@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <meta />
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row mt-5 round-3">
+            <div class="col-12 d-flex justify-content-center">
+                <h1>Password Generator v4</h1>
+            </div>
+            <div class="col-12 d-flex justify-content-center mt-3">
+                    <input class="border-1 border-primary form-control w-50 text-center" id="inp" disabled value="" type="text">
+            </div>
+            <div class="col-12 d-flex justify-content-center my-3">
+                <div class="btn-group" role="group">
+                    <input class="btn-check" id="rep" autocomplete="off" type="checkbox">
+                    <label class="btn btn-outline-primary" for="rep">REPEATABLE</label>
+
+                    <input class="btn-check" id="sym" autocomplete="off" type="checkbox">
+                    <label class="btn btn-outline-primary" for="sym">SYMBOLS</label>
+
+                    <input class="btn-check" id="let" autocomplete="off" type="checkbox">
+                    <label class="btn btn-outline-primary" for="let">LETTERS</label>
+
+                    <input class="btn-check" id="cap" autocomplete="off" type="checkbox">
+                    <label class="btn btn-outline-primary" for="cap">CAPITALS</label>
+
+                    <input class="border border-primary rounded-end" id="len" value="8" max="60" min="4" type="number">
+                </div>
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-center">
+                <input class="btn btn-primary w-25" id="gen" value="GENERATE" type="button">
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-center mt-5">
+                <p><b>Info</b></p>
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-center">
+                <ul>
+                    <li><b>REPEATABLE</b> - Blocks characters from repeating.</li>
+                    <li><b>SYMBOLS</b> - Enables to use symbols in the password.</li>
+                    <li><b>LETTERS</b> - Enables to use letters in the password.</li>
+                    <li><b>CAPITALS</b> - Enables to use capitals in the password.</li>
+                    <li>Password length by deffault is 8, at max 60 and at minimum 4.</li>
+                </ul>
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-center mt-2">
+                <p><b>Tip:</b> Add more numbers as you add new type of symbols in. (symbols, letters, capitals)</p>
+            </div>
+            <div class="col-12 d-flex flex-row justify-content-center mt-3">
+                <p class="fs-6 fst-italic"><b>Made by Demon_Ruz</b></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="javaScript.js"></script>
+</body>
+
+</html>
