@@ -5,10 +5,10 @@ This was my first project published on GitHub, created before I began studying i
 
 ## Overview
 
-The application generates random passwords up to **32 characters long**.  
+The application generates random passwords up to **60 characters long**.  
 Users can customize:
 
-- Password length (up to 32 characters)
+- Password length (up to 60 characters)
 - Which character types to include or exclude
 
 ## Features
