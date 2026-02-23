@@ -1,4 +1,4 @@
-/* config state - switch to true to recieve a logs in to console */
+/* config state - switch to true to recieve logs in to console */
 const debug = false;
 
 /* switches states: ["repeatable", "symbols", "letters", "capitals"] */
@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
     ];
 
     //=============================================== First Load
-    /* appending events to each html tag in item list */
+    /* appending events to each html tag in components */
     appendEvent(components);
 
     /* generating first password */
@@ -98,5 +98,6 @@ function generate(components) {
     /* passing generated password to password input field */
     components[0].value = output;
 }
+
 
 
