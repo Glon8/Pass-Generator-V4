@@ -1,8 +1,29 @@
-# Pass-Generator-V4 (Loading first thing on GitHub)
+# Pass-Generator-V4
 
-My pass generator on java script and html. My first project on GitHub, before I began to learn in college.
-Generates random passwords up to 32 characters long. User can choose, which symbols include or exclude, and the length of generation.
+**Pass-Generator-V4** is a simple password generator built with JavaScript and HTML.  
+This was my first project published on GitHub, created before I began studying in college.
 
-**Usage:** run HTML file - DONE.
+## Overview
+
+The application generates random passwords up to **32 characters long**.  
+Users can customize:
+
+- Password length (up to 32 characters)
+- Which character types to include or exclude
+
+## Features
+
+- Random password generation
+- Adjustable password length
+- Customizable symbol inclusion/exclusion
+- Lightweight and easy to use
+
+## Usage
+
+1. Download or clone the repository.
+2. Open the HTML file in your browser.
+3. Generate your password.
+
+Done.
 
 
