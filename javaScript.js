@@ -62,7 +62,7 @@ function generate(components) {
     let password_length = components[6].value;
 
     /* check for password length */
-    if (password_length == null || password_length == 0) password_length = 8;
+    if (password_length == null || password_length < 4) password_length = 8;
 
     /* default set of characters for generation (digits only) */
     const white_list = [];
@@ -98,6 +98,7 @@ function generate(components) {
     /* passing generated password to password input field */
     components[0].value = output;
 }
+
 
 
 
