@@ -1,74 +1,102 @@
+/* config state - switch to true to recieve a logs in to console */
+const debug = false;
+
+/* switches states: ["repeatable", "symbols", "letters", "capitals"] */
+const switches = [true, true, true, true];
+
+/* lists of available askii characters */
+const askii_symbols = [33, 34, 35, 36, 37, 38, 64];
+const askii_digits = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+const askii_upper_case = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 90];
+const askii_lower_case = [97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122];
+
 window.addEventListener("DOMContentLoaded", () => {
-    const item = [
-        document.getElementById("inp"),
-        document.getElementById("rep"),
-        document.getElementById("sym"),
-        document.getElementById("let"),
-        document.getElementById("cap"),
-        document.getElementById("gen"),
-        document.getElementById("len")];
+    /* html tags by id */
+    const components = [
+        document.getElementById("inp"), // < password input field
+        document.getElementById("rep"), // < button - "repeatable"
+        document.getElementById("sym"), // < button - "symbols"
+        document.getElementById("let"), // < button - "letters"
+        document.getElementById("cap"), // < button - "capitals"
+        document.getElementById("gen"), // < button - "generate"
+        document.getElementById("len")  // < length input field 
+    ];
 
-    const conf = false;
+    //=============================================== First Load
+    /* appending events to each html tag in item list */
+    appendEvent(components);
 
-    let switches = [false, false, false, false];
-
-    let list = [33,34,35,36,37,38,64,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,90];
-
-    //===============================================
-    appendEvent(conf, switches, item, list);
-
-    generate(conf, switches, item, list); //  <================ generation
+    /* generating first password */
+    generate(components);
 });
 
-function appendEvent(c, switches, item, list) {
-    for(let i = 1; i < item.length - 1; i++){
-        item[i].addEventListener("click", ()=>{
-            switches[i - 1] = item[i].checked == true? true : false;
+function appendEvent(components) {
+    /* adding on click event to every button */
+    for (let i = 1; i < components.length - 1; i++) {
+        components[i].addEventListener("click", () => {
+            /* flipping switches on click */
+            switches[i - 1] = components[i].checked == true ? true : false;
 
-            generate(c, switches, item, list); //  <================ generation
+            /* regenerating password with every change in configuration */
+            generate(components);
 
-            if(c) console.log(switches[i - 1]);
+            /* printing out to console if debug mode is on */
+            if (debug) console.log(switches[i - 1]);
         });
     }
 
-    item[5].addEventListener("click", ()=>{
-        generate(c, switches, item, list); //  <================ generation
+    /* adding on click event to generate button */
+    components[5].addEventListener("click", () => {
+        generate(components);
     });
 
-    item[6].addEventListener("input",()=>{
-        generate(c, switches, item, list); //  <================ generation
+    /* adding input listener to length input field */
+    components[6].addEventListener("input", () => {
+        /* regenerating password with every change in configuration */
+        generate(components);
     });
 }
 
-function generate(c, switches, item, list){
+function generate(components) {
     let output = "";
-    let passwordLength = item[6].value;
+    let password_length = components[6].value;
 
-    if(passwordLength == null || passwordLength == 0) passwordLength = 8;
+    /* check for password length */
+    if (password_length == null || password_length == 0) password_length = 8;
 
-    let whiteList = [48,49,50,51,52,53,54,55,56,57];
+    /* default set of characters for generation (digits only) */
+    const white_list = [];
+    white_list.push(...askii_digits);
 
-    if(switches[1]) for(let i = 0; i <= 6; i++) whiteList.push(list[i]);
+    /* if symbols acceptable */
+    if (switches[1]) white_list.push(...askii_symbols);
 
-    if(switches[2]) for(let i = 7; i <= 32; i++) whiteList.push(list[i]);
-    
-    if(switches[3]) for(let i = 33; i < list.length; i++) whiteList.push(list[i]);
+    /* if lower case letters acceptable */
+    if (switches[2]) white_list.push(...askii_lower_case);
 
-    if(switches[0]) passwordLength = passwordLength > whiteList.length? whiteList.length : passwordLength;
+    /* if upper case letters acceptable */
+    if (switches[3]) white_list.push(...askii_upper_case);
 
-    if(c) console.log(whiteList);
+    /* if repeatable password acceptable */
+    if (switches[0]) password_length = password_length > white_list.length ? white_list.length : password_length;
 
-    for(let i = 0; i < passwordLength; i++){
-    let nextNum = Math.floor(Math.random() * (whiteList.length - 0)) + 0;
+    /* printing out to console if debug mode is on */
+    if (debug) console.log(white_list);
 
-    output += String.fromCharCode(whiteList[nextNum]);
+    /* creating random password with a white list */
+    for (let i = 0; i < password_length; i++) {
+        const next_num = Math.floor(Math.random() * white_list.length);
 
-    if(switches[0]) whiteList.splice(nextNum,1);
+        output += String.fromCharCode(white_list[next_num]);
+
+        if (switches[0]) white_list.splice(next_num, 1);
     }
+    
+    /* printing out to console if debug mode is on */
+    if (debug) console.log(output);
 
-    if(c) console.log(output);
-
-    item[0].value = output;
+    /* passing generated password to password input field */
+    components[0].value = output;
 }
 
 
